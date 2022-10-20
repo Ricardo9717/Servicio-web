@@ -2,6 +2,8 @@ package com.example.Hibernate.controller;
 
 import java.util.List;
 
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +21,7 @@ import com.example.Hibernate.bean.CreateBean;
 import com.example.Hibernate.bean.Mibean;
 import com.example.Hibernate.entity.Student;
 import com.example.Hibernate.entity.Subject;
+import com.example.Hibernate.request.StudentRequest;
 import com.example.Hibernate.service.StudentService;
 
 @RestController
@@ -57,8 +60,8 @@ public class StudentController {
 	 
 	 @PostMapping(path = "/insert")
 	 @ResponseStatus(HttpStatus.CREATED)
-	    public void insertStudents (@RequestBody Student s){
-	        ss.setSubject(s);
+	    public void insertStudents (@RequestBody StudentRequest sreq){
+	        ss.setStudent(sreq);
 	    }
 	 
 	 @GetMapping(path = "/getById{id}")

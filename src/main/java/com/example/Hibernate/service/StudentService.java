@@ -13,6 +13,7 @@ import com.example.Hibernate.entity.Subject;
 import com.example.Hibernate.exception.StudentNotFound;
 import com.example.Hibernate.repo.StudentRepository;
 import com.example.Hibernate.repo.Subjectrepository;
+import com.example.Hibernate.request.StudentRequest;
 
 @Service
 public class StudentService {
@@ -37,8 +38,14 @@ public class StudentService {
         return sr1.findAll() ;
     }
 	
-	public void setSubject( Student s){
-        System.out.println(s.getStudent_name());
+	public void setStudent( StudentRequest sreq){
+        System.out.println(sreq.getStudent_name());
+        Student s = new Student();
+        s.setId(sreq.getId());
+        s.setStudent_name(sreq.getStudent_name());
+        s.setScore(sreq.getScore());
+        s.setSubject(sreq.getSubject());
+        //s.setSubject_id(sreq.getSubject_id());
         sr.save(s);
     }
 	

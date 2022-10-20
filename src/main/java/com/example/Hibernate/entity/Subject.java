@@ -17,6 +17,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Getter;
@@ -27,7 +28,7 @@ import lombok.Setter;
 @Table(name="subject")
 @Getter @Setter 
 @RequiredArgsConstructor
-public class Subject {
+public class Subject implements Serializable{
 	
 	
 	@Id
@@ -37,15 +38,17 @@ public class Subject {
 	 @Column
 	 String name;
 	 
-	 @OneToMany(cascade = CascadeType.ALL,fetch= FetchType.LAZY, mappedBy = "subject")
+	 @JsonIgnore
+	 @OneToMany(cascade = CascadeType.ALL,fetch= FetchType.LAZY, 
+	 mappedBy = "subject")
 	 List<Student> student = new ArrayList<>();
 
 	
 	
-	 @JsonBackReference 
-		public List<Student> getStudent() {
-			return student;
-		}
+	 //@JsonBackReference 
+//		public List<Student> getStudent() {
+//			return student;
+//		}
 
 
 

@@ -17,6 +17,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.AllArgsConstructor;
@@ -29,7 +30,7 @@ import lombok.Setter;
 @Table(name="student")
 @Getter @Setter 
 @RequiredArgsConstructor
-public class Student {
+public class Student implements Serializable {
 
 	@Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -44,15 +45,16 @@ public class Student {
 //	 @Column
 //	 int subject_id;
 	 
+	
 	 @ManyToOne(cascade = CascadeType.ALL)
 	 @JoinColumn(name="subject_id")
 	 Subject subject;
 
 	 
-	 @JsonManagedReference
-		public Subject getSubject() {
-			return subject;
-		}
+	 //@JsonManagedReference
+//		public Subject getSubject() {
+//			return subject;
+//		}
 
 
 
